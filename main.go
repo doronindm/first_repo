@@ -1,21 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-func sum(xs []float64) float64 {
-	total := 0.0
-	for _, v := range xs {
-		total += v
+func half(n int) (float64, bool) {
+	halfn := float64(n) / 2
+	if math.Mod(halfn, 2) == 0 {
+		return halfn, true
 	}
-	return total
+	return halfn, false
 }
 
 func main() {
-	xs := []float64{
-		98, 73, 86, 92,
-		79, 54, 21, 83,
-		17, 12, 7, 36,
-	}
-
-	fmt.Println(sum(xs))
+	fmt.Println(half(30))
+	fmt.Println(half(31))
 }
