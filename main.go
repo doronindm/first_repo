@@ -2,12 +2,12 @@ package main
 
 import "fmt"
 
-func average(xs []float64) float64 {
+func sum(xs []float64) float64 {
 	total := 0.0
 	for _, v := range xs {
 		total += v
 	}
-	return total / float64(len(xs))
+	return total
 }
 
 func main() {
@@ -17,5 +17,5 @@ func main() {
 		17, 12, 7, 36,
 	}
 
-	fmt.Println(average(xs))
+	fmt.Println(sum(xs))
 }
