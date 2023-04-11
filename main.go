@@ -2,22 +2,21 @@ package main
 
 import "fmt"
 
-func up(x ...int) int {
-	Min := x[0]
-	for _, y := range x {
-		if y < Min {
-			Min = y
-		}
-	}
-	return Min
+func main() {
+	nextOdd := makeOddGenerator()
+
+	fmt.Println(nextOdd())
+	fmt.Println(nextOdd())
+	fmt.Println(nextOdd())
+	fmt.Println(nextOdd())
+	fmt.Println(nextOdd())
 }
 
-func main() {
-	x := []int{
-		98, 73, 86, 92,
-		79, 54, 21, 83,
-		17, 12, 129, 36,
+func makeOddGenerator() func() uint {
+	i := uint(1)
+	return func() uint {
+		r := i
+		i += 2
+		return r
 	}
-
-	fmt.Println(up(x...))
 }
