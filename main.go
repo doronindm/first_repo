@@ -3,13 +3,13 @@ package main
 import "fmt"
 
 func up(x ...int) int {
-	Max := x[0]
+	Min := x[0]
 	for _, y := range x {
-		if y > Max {
-			Max = y
+		if y < Min {
+			Min = y
 		}
 	}
-	return Max
+	return Min
 }
 
 func main() {
