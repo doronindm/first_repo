@@ -2,19 +2,13 @@ package main
 
 import "fmt"
 
-func makeOddGenerator() func() uint {
-	i := uint(1)
-	return func() (ret uint) {
-		ret = i
-		i += 2
-		return
+func factorial(x uint) uint {
+	if x == 0 {
+		return 1
 	}
+
+	return x * factorial(x-1)
 }
 func main() {
-	nextOdd := makeOddGenerator()
-	fmt.Println(nextOdd())
-	fmt.Println(nextOdd())
-	fmt.Println(nextOdd())
-	fmt.Println(nextOdd())
-	fmt.Println(nextOdd())
+	fmt.Println(factorial(4))
 }
