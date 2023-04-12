@@ -2,11 +2,13 @@ package main
 
 import "fmt"
 
-func zero(xPtr *int) {
-	*xPtr = 0
+func swap(x, y *int) {
+	*x, *y = *y, *x
 }
 func main() {
-	x := 5
-	zero(&x)
-	fmt.Println(x)
+	x := 3
+	y := 5
+	fmt.Println("Before: ", "x =", x, "y = ", y)
+	swap(&x, &y)
+	fmt.Println("After: ", "x =", x, "y = ", y)
 }
