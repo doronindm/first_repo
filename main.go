@@ -1,18 +1,22 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-type Circle struct {
-	x, y, r float64
+type animal interface {
+	makeSound()
 }
+type cat struct{}
+type dog struct{}
 
-func (c *Circle) area() float64 {
-	return math.Pi * c.r * c.r
+func (c *cat) makeSound() {
+	fmt.Println("Meow!")
+}
+func (c *dog) makeSound() {
+	fmt.Println("Woof!")
 }
 func main() {
-	c := Circle{0, 0, 10}
-	fmt.Println(c.area())
+	var c, d animal = &cat{}, &dog{}
+
+	c.makeSound()
+	d.makeSound()
 }
