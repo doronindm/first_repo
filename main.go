@@ -1,14 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-func swap(x, y *int) {
-	*x, *y = *y, *x
+type Circle struct {
+	x, y, r float64
+}
+
+func (c *Circle) area() float64 {
+	return math.Pi * c.r * c.r
 }
 func main() {
-	x := 3
-	y := 5
-	fmt.Println("Before: ", "x =", x, "y = ", y)
-	swap(&x, &y)
-	fmt.Println("After: ", "x =", x, "y = ", y)
+	c := Circle{0, 0, 10}
+	fmt.Println(c.area())
 }
