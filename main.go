@@ -2,21 +2,22 @@ package main
 
 import "fmt"
 
-type animal interface {
-	makeSound()
+type greeter interface {
+	greet(string) string
 }
-type cat struct{}
-type dog struct{}
+type russian struct{}
+type american struct{}
 
-func (c *cat) makeSound() {
-	fmt.Println("Meow!")
+func (r *russian) greet(name string) string {
+	return fmt.Sprintf("Привет,  %s", name)
 }
-func (c *dog) makeSound() {
-	fmt.Println("Woof!")
+func (a *american) greet(name string) string {
+	return fmt.Sprintf("Hello,  %s", name)
+}
+func sayHello(g greeter, name string) {
+	fmt.Println(g.greet(name))
 }
 func main() {
-	var c, d animal = &cat{}, &dog{}
-
-	c.makeSound()
-	d.makeSound()
+	sayHello(&russian{}, "Петя")
+	sayHello(&american{}, "Bill")
 }
