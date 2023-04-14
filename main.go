@@ -2,22 +2,34 @@ package main
 
 import "fmt"
 
-type greeter interface {
-	greet(string) string
+type animal interface {
+	swimming
+	diving
+	flight
 }
-type russian struct{}
-type american struct{}
+type swimming interface {
+	swim()
+}
+type diving interface {
+	dive()
+}
+type flight interface {
+	fly()
+}
+type flyingFish struct{}
 
-func (r *russian) greet(name string) string {
-	return fmt.Sprintf("Привет,  %s", name)
+func (f *flyingFish) swim() {
+	fmt.Println("Flying fish swim")
 }
-func (a *american) greet(name string) string {
-	return fmt.Sprintf("Hello,  %s", name)
+func (f *flyingFish) dive() {
+	fmt.Println("Flying fish dive")
 }
-func sayHello(g greeter, name string) {
-	fmt.Println(g.greet(name))
+func (f *flyingFish) fly() {
+	fmt.Println("Flying fish fly")
 }
 func main() {
-	sayHello(&russian{}, "Петя")
-	sayHello(&american{}, "Bill")
+	var f animal = &flyingFish{}
+	f.swim()
+	f.dive()
+	f.fly()
 }
