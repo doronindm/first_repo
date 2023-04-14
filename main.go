@@ -1,56 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
-type fish interface {
-	swimming
-	diving
-	flight
-}
-type bird interface {
-	walker
-	diving
-	flight
-}
-type swimming interface {
-	swim()
-}
-type diving interface {
-	dive()
-}
-type flight interface {
-	fly()
-}
-type walker interface {
-	walk()
-}
-type flyingFish struct{}
-type seagull struct{}
-
-func (f *flyingFish) swim() {
-	fmt.Println("Flying fish swim")
-}
-func (f *flyingFish) dive() {
-	fmt.Println("Flying fish dive")
-}
-func (f *flyingFish) fly() {
-	fmt.Println("Flying fish fly")
-}
-func (s *seagull) walk() {
-	fmt.Println("Seagull walk")
-}
-func (s *seagull) dive() {
-	fmt.Println("Seagull dive")
-}
-func (s *seagull) fly() {
-	fmt.Println("Seagull fly")
-}
-func dive(d diving) {
-	d.dive()
-}
 func main() {
-	var f fish = &flyingFish{}
-	var s bird = &seagull{}
-	dive(f)
-	dive(s)
+	m := map[string]interface{}{}
+	m["one"] = 1
+	m["two"] = 2.0
+	m["three"] = true
+
+	for k, v := range m {
+		switch v.(type) {
+		case int:
+			fmt.Printf("%s is an intiger\n", k)
+		case float64:
+			fmt.Printf("%s is an float64\n", k)
+		default:
+			fmt.Printf("%s is %v\n", k, reflect.TypeOf(v))
+		}
+	}
 }
